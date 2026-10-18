@@ -1,8 +1,8 @@
 {
   "id": "/mode-tempur-40-hari/",
-  "name": "Mode Tempur 40 Hari",
-  "short_name": "Mode Tempur",
-  "description": "Pelacak kebiasaan dan ibadah 40 hari",
+  "name": "WAR 40 DAY",
+  "short_name": "WAR 40 DAY",
+  "description": "WAR 40 DAY — Program disiplin dan ibadah 40 hari",
   "start_url": "/mode-tempur-40-hari/",
   "scope": "/mode-tempur-40-hari/",
   "display": "standalone",

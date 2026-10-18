@@ -6,14 +6,36 @@
   "start_url": "/mode-tempur-40-hari/",
   "scope": "/mode-tempur-40-hari/",
   "display": "standalone",
-  "background_color": "#eeedeb",
-  "theme_color": "#101115",
+  "background_color": "#08090b",
+  "theme_color": "#08090b",
   "icons": [
+    {
+      "src": "./icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
     {
       "src": "./icon.svg",
       "sizes": "any",
       "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "purpose": "any"
     }
+  ],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
   ]
 }

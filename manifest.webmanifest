@@ -1,0 +1,19 @@
+{
+  "id": "/mode-tempur-40-hari/",
+  "name": "Mode Tempur 40 Hari",
+  "short_name": "Mode Tempur",
+  "description": "Pelacak kebiasaan dan ibadah 40 hari",
+  "start_url": "/mode-tempur-40-hari/",
+  "scope": "/mode-tempur-40-hari/",
+  "display": "standalone",
+  "background_color": "#eeedeb",
+  "theme_color": "#101115",
+  "icons": [
+    {
+      "src": "./icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+name: Generate PWA PNG Icons
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/pwa-icons.yml'
+permissions:
+  contents: write
+jobs:
+  icons:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate PNG icons without external dependencies
+        run: |
+          python3 - <<'PY'
+          import struct,zlib
+          def png(size):
+              rows=[]
+              for y in range(size):
+                  row=bytearray()
+                  for x in range(size):
+                      u=x/size;v=y/size
+                      bg=(16,17,21)
+                      # white stylized M and green 40-day marker
+                      left=(.20<=u<=.27 and .25<=v<=.72)
+                      right=(.73<=u<=.80 and .25<=v<=.72)
+                      diag1=(.27<=u<=.50 and abs(v-(.25+(.50-u)*.80))<.038)
+                      diag2=(.50<=u<=.73 and abs(v-(.25+(u-.50)*.80))<.038)
+                      band=(.22<=u<=.78 and .79<=v<=.83)
+                      c=(52,186,143) if band else ((242,242,240) if left or right or diag1 or diag2 else bg)
+                      row.extend((*c,255))
+                  rows.append(b'\x00'+row)
+              def chunk(t,b):return struct.pack('!I',len(b))+t+b+struct.pack('!I',zlib.crc32(t+b)&0xffffffff)
+              data=b'\x89PNG\r\n\x1a\n'+chunk(b'IHDR',struct.pack('!2I5B',size,size,8,6,0,0,0))+chunk(b'IDAT',zlib.compress(b''.join(rows),9))+chunk(b'IEND',b'')
+              open(f'icon-{size}.png','wb').write(data)
+          for size in (192,512):png(size)
+          PY
+      - name: Commit icons
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add icon-192.png icon-512.png
+          git diff --cached --quiet || (git commit -m "Generate PNG PWA icons" && git push)

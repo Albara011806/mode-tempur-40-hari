@@ -1,5 +1,5 @@
 // WAR 40 DAY service worker — naikkan VERSION setiap rilis agar cache diperbarui.
-const VERSION = 'war-40-day-v22';
+const VERSION = 'war-40-day-v23';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './logo-terang.png', './logo-gelap.png',

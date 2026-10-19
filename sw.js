@@ -1,5 +1,5 @@
 // WAR 40 DAY service worker — naikkan VERSION setiap rilis agar cache diperbarui.
-const VERSION = 'war-40-day-v24';
+const VERSION = 'war-40-day-v25';
 // Data Al-Qur'an disimpan di cache terpisah agar tidak terhapus saat aplikasi diperbarui.
 const QURAN = 'war-quran-v1';
 const ASSETS = [
@@ -25,6 +25,20 @@ self.addEventListener('activate', e => {
 });
 
 self.addEventListener('message', e => { if (e.data === 'skipWaiting') self.skipWaiting(); });
+
+// Ketuk notifikasi: "✓ Sudah" mencentang kebiasaan, selain itu membuka halaman terkait.
+self.addEventListener('notificationclick', e => {
+  e.notification.close();
+  const d = e.notification.data || {};
+  const done = e.action === 'done' && d.habit != null;
+  const msg = done ? { type: 'done', habit: d.habit, d: d.d } : { type: 'open', tab: d.tab || 'dashboard', d: d.d };
+  const url = './?' + (done ? 'done=' + d.habit + '&d=' + d.d + '&tab=harian' : 'tab=' + (d.tab || 'dashboard') + (d.d ? '&d=' + d.d : ''));
+  e.waitUntil(self.clients.matchAll({ type: 'window', includeUncontrolled: true }).then(list => {
+    const c = list.find(w => w.url.includes(self.registration.scope));
+    if (c) { c.postMessage(msg); return c.focus(); }
+    return self.clients.openWindow(url);
+  }));
+});
 
 self.addEventListener('fetch', e => {
   const req = e.request;

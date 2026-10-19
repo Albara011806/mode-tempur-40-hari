@@ -1,7 +1,7 @@
 // WAR 40 DAY service worker — naikkan VERSION setiap rilis agar cache diperbarui.
-const VERSION = 'war-40-day-v26';
+const VERSION = 'war-40-day-v27';
 // Data Al-Qur'an disimpan di cache terpisah agar tidak terhapus saat aplikasi diperbarui.
-const QURAN = 'war-quran-v1';
+const QURAN = 'war-quran-v2';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './logo-terang.png', './logo-gelap.png',

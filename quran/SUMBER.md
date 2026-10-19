@@ -8,3 +8,6 @@
 
 Format file `N.json`: `{"n": nomor surat, "b": tampilkan basmalah, "a": [[arab, latin, terjemahan, juz, halaman, sajdah], ...]}`.
 Jika menemukan kesalahan teks, mohon laporkan agar dapat diperiksa terhadap mushaf Kemenag.
+
+## Koreksi
+- 2026-10-19: kata «اللهم» tanpa harakat pada QS 3:26, 5:114, 8:32, 10:10, 39:46 (cacat pada kedua sumber data) diseragamkan menjadi «اللّٰهُمَّ» sesuai penulisan mushaf Kemenag.

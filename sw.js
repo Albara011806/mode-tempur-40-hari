@@ -1,5 +1,5 @@
 // WAR 40 DAY service worker — naikkan VERSION setiap rilis agar cache diperbarui.
-const VERSION = 'war-40-day-v25';
+const VERSION = 'war-40-day-v26';
 // Data Al-Qur'an disimpan di cache terpisah agar tidak terhapus saat aplikasi diperbarui.
 const QURAN = 'war-quran-v1';
 const ASSETS = [
@@ -65,7 +65,18 @@ self.addEventListener('fetch', e => {
     return;
   }
 
-  // Aset: jaringan dulu, simpan salinan; offline → cache (abaikan query ?v=).
+  // Gambar, font & pustaka: ambil dari simpanan HP dulu (cepat & utuh), perbarui diam-diam di latar.
+  if (/\.(png|jpe?g|svg|webp|woff2?|ttf|css|js)$/i.test(url.pathname) && !url.pathname.endsWith('/sw.js')) {
+    e.respondWith(
+      caches.open(VERSION).then(cache => cache.match(req, { ignoreSearch: true }).then(hit => {
+        const net = fetch(req).then(r => { if (r.ok) cache.put(req, r.clone()); return r; }).catch(() => hit);
+        return hit || net;
+      }))
+    );
+    return;
+  }
+
+  // Lainnya: jaringan dulu, simpan salinan; offline → cache (abaikan query ?v=).
   e.respondWith(
     fetch(req).then(r => {
       if (r.ok) { const c = r.clone(); caches.open(VERSION).then(cache => cache.put(req, c)); }

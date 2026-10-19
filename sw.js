@@ -1,10 +1,11 @@
 // WAR 40 DAY service worker — naikkan VERSION setiap rilis agar cache diperbarui.
-const VERSION = 'war-40-day-v20';
+const VERSION = 'war-40-day-v21';
 const ASSETS = [
   './', './index.html', './manifest.webmanifest',
   './logo-terang.png', './logo-gelap.png',
   './icon-192.png', './icon-512.png', './icon-maskable-192.png', './icon-maskable-512.png',
-  './apple-touch-icon.png', './favicon-48.png'
+  './apple-touch-icon.png', './favicon-48.png',
+  './vendor/leaflet/leaflet.js', './vendor/leaflet/leaflet.css'
 ];
 
 self.addEventListener('install', e => {

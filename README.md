@@ -13,4 +13,4 @@ Aplikasi: https://albara011806.github.io/mode-tempur-40-hari/
 Naikkan `VERSION` di `sw.js` (dan `APP_VERSION` + `?v=` di `index.html`) agar cache perangkat diperbarui.
 
 ## Data
-Disimpan di `localStorage` perangkat (kunci `mode_tempur_v2`). Gunakan Pengaturan › Unduh Backup JSON sebelum ganti perangkat.
+Disimpan di `localStorage` perangkat (kunci `mode_tempur_v2`). Berbagi progres lewat Dashboard › Gambar Pencapaian (PNG per hari atau keseluruhan).
